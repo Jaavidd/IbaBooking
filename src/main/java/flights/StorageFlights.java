@@ -29,8 +29,9 @@ public class StorageFlights implements Dao<Flight> {
     }
 
     @Override
-    public void update(Flight flight) {
+    public Flight update(Flight flight) {
         flightList.set(flightList.indexOf(flight), flight);
+        return flight;
     }
 
     @Override

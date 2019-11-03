@@ -8,6 +8,7 @@ public class Flight {
     private int id; //TODO change to string , ex -> HE110, JB201
     private int numberOfSeats;
     private HashMap<Integer, Client> seats; //TODO max size,  different class
+    int numberOfFreeSeats;
 
     private Date startingDate; //current time + 24h
     private Date destinationDate; // starting time + (flying time)
@@ -26,6 +27,7 @@ public class Flight {
         this.destinationDate = destinationDate;
         this.startingCity = startingCity;
         this.destinationCity = destinationPoint;
+        this.numberOfFreeSeats = numberOfSeats;
     }
 
     @Override
@@ -68,5 +70,10 @@ public class Flight {
 
     public Cities getDestinationCity() {
         return destinationCity;
+    }
+
+    public int getNumberOfFreeSeats() {
+        numberOfFreeSeats = numberOfSeats - seats.size();
+        return numberOfFreeSeats;
     }
 }
