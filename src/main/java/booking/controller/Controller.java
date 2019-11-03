@@ -4,7 +4,8 @@ import booking.service.Service;
 
 public class Controller {
 
-    Service service=new Service();
+  public   Service service=new Service();
+    int a;
 
 
 }
