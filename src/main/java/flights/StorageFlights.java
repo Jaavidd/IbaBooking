@@ -13,9 +13,9 @@ public class StorageFlights implements Dao<Flight> {
 
     @Override
     public Optional<Flight> get(int id) {
-        if(get(id).isPresent()){
+        if (get(id).isPresent()) {
             return Optional.of(flightList.get(id));
-        }else return Optional.empty();
+        } else return Optional.empty();
     }
 
     @Override

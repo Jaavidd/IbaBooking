@@ -12,20 +12,20 @@ public class Flight {
     private Date startingDate; //current time + 24h
     private Date destinationDate; // starting time + (flying time)
 
-    private String startingPoint; //TODO default Kiev, change String to enum City
-    private String destinationPoint; //TODO Random cities (create enum)
+    private Cities startingCity; //TODO default Kiev, change String to enum City
+    private Cities destinationCity; //TODO Random cities (create enum)
 
     public Flight(int id, int numberOfSeats,
                   HashMap<Integer, Client> seats,
                   Date startingDate, Date destinationDate,
-                  String startingPoint, String destinationPoint) {
+                  Cities startingCity, Cities destinationPoint) {
         this.id = id;
         this.numberOfSeats = numberOfSeats;
         this.seats = seats;
         this.startingDate = startingDate;
         this.destinationDate = destinationDate;
-        this.startingPoint = startingPoint;
-        this.destinationPoint = destinationPoint;
+        this.startingCity = startingCity;
+        this.destinationCity = destinationPoint;
     }
 
     @Override
@@ -36,9 +36,37 @@ public class Flight {
         sb.append(", seats=").append(seats);
         sb.append(", startingDate=").append(startingDate);
         sb.append(", destinationDate=").append(destinationDate);
-        sb.append(", startingPoint='").append(startingPoint).append('\'');
-        sb.append(", destinationPoint='").append(destinationPoint).append('\'');
+        sb.append(", startingCity='").append(startingCity).append('\'');
+        sb.append(", destinationCity='").append(destinationCity).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getNumberOfSeats() {
+        return numberOfSeats;
+    }
+
+    public HashMap<Integer, Client> getSeats() {
+        return seats;
+    }
+
+    public Date getStartingDate() {
+        return startingDate;
+    }
+
+    public Date getDestinationDate() {
+        return destinationDate;
+    }
+
+    public Cities getStartingCity() {
+        return startingCity;
+    }
+
+    public Cities getDestinationCity() {
+        return destinationCity;
     }
 }
