@@ -18,7 +18,7 @@ public class FlightService {
     public ArrayList<Flight> getFlightsWithFreeSeatsMoreThan(int freeSeats){
         ArrayList<Flight> availableFlight;
         availableFlight = flightDao.getAll().stream()
-                .filter(flight -> flight.getNumberOfSeats() - flight.getSeats()
+                .filter(flight -> (flight.getNumberOfSeats() - flight.getSeats()) )
                 .size() >= freeSeats).collect(Collectors.toCollection(ArrayList::new));
         return availableFlight;
     }
@@ -26,7 +26,7 @@ public class FlightService {
     public ArrayList<Flight> getFlightsByDestination(Cities cities){
         ArrayList<Flight> availableFlight;
         availableFlight = flightDao.getAll().stream()
-                .filter(flight -> flight.getDestinationCity()
+                .filter(flight -> flight.getDestinationCity())
                 .equals(cities)).collect(Collectors.toCollection(ArrayList::new));
         return availableFlight;
     }
