@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="IbaBooking" target="1.5" />
+      <module name="IbaBooking" target="7" />
     </bytecodeTargetLevel>
   </component>
 </project>
