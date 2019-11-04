@@ -1,6 +1,7 @@
-package flights;
+package storage;
 
 import dao.Dao;
+import flights.Flight;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +9,7 @@ import java.util.Optional;
 
 public class StorageFlights implements Dao<Flight> {
 
-    List<Flight> flightList = new ArrayList<>();
-
+    private List<Flight> flightList = new ArrayList<>();
 
     @Override
     public Optional<Flight> get(int id) {
@@ -21,7 +21,7 @@ public class StorageFlights implements Dao<Flight> {
     @Override
     public List<Flight> getAll() {
         return flightList;
-    }
+}
 
     @Override
     public void save(Flight flight) {
@@ -29,9 +29,8 @@ public class StorageFlights implements Dao<Flight> {
     }
 
     @Override
-    public Flight update(Flight flight) {
+    public void update(Flight flight) {
         flightList.set(flightList.indexOf(flight), flight);
-        return flight;
     }
 
     @Override

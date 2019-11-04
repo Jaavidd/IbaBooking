@@ -1,6 +1,9 @@
-package flights;
+package services;
 
 import dao.Dao;
+import flights.Cities;
+import flights.Flight;
+import storage.StorageFlights;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,6 +52,11 @@ public class FlightService {
         }else {
             System.out.println("error"); // TODO change
         }
+    }
+
+    public void removeClient(int id, Client client) {
+        flightDao.get(id).getSeats().remove(1); //TODO fix HashMap to ArrayList fo correct work
+        client.cancelFlight(flightDao.get(id));
     }
 
 

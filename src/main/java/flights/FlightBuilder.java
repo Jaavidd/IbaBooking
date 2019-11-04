@@ -12,8 +12,8 @@ public class FlightBuilder {
 
     private Date destinationDate;
 
-    private Cities startingCity;
-    private Cities destinationCity;
+    private String startingCity;
+    private String destinationCity;
 
     public FlightBuilder withId(int inputId) {
         id = inputId;
@@ -40,12 +40,12 @@ public class FlightBuilder {
         return this;
     }
 
-    public FlightBuilder withStartingCity(Cities startingPoint) {
+    public FlightBuilder withStartingCity(String startingPoint) {
         startingCity = startingCity;
         return this;
     }
 
-    public FlightBuilder withDestinationCity(Cities destinationPoint) {
+    public FlightBuilder withDestinationCity(String destinationPoint) {
         destinationCity = destinationPoint;
         return this;
     }

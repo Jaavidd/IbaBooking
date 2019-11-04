@@ -7,19 +7,21 @@ public class Flight {
 
     private int id; //TODO change to string , ex -> HE110, JB201
     private int numberOfSeats;
-    private HashMap<Integer, Client> seats; //TODO max size,  different class
+
+    //TODO change HashMap to ArrayList or create new class "SeatMap"(2d matrix, seat/ client)
+    private HashMap<Integer, Client> seats; //TODO max size,  different class. Key - seat number, value - client
     int numberOfFreeSeats;
 
     private Date startingDate; //current time + 24h
     private Date destinationDate; // starting time + (flying time)
 
-    private Cities startingCity; //TODO default Kiev, change String to enum City
-    private Cities destinationCity; //TODO Random cities (create enum)
+    private String startingCity; //TODO default Kiev, change String to enum City
+    private String destinationCity; //TODO Random cities (create enum)
 
     public Flight(int id, int numberOfSeats,
                   HashMap<Integer, Client> seats,
                   Date startingDate, Date destinationDate,
-                  Cities startingCity, Cities destinationPoint) {
+                  String startingCity, String destinationPoint) {
         this.id = id;
         this.numberOfSeats = numberOfSeats;
         this.seats = seats;
@@ -64,11 +66,11 @@ public class Flight {
         return destinationDate;
     }
 
-    public Cities getStartingCity() {
+    public String getStartingCity() {
         return startingCity;
     }
 
-    public Cities getDestinationCity() {
+    public String getDestinationCity() {
         return destinationCity;
     }
 

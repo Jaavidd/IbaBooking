@@ -1,7 +1,5 @@
 package dao;
 
-import flights.Flight;
-
 import java.util.List;
 import java.util.Optional;
 
