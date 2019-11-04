@@ -4,10 +4,10 @@ import booking.service.Client;
 
 import java.util.List;
 
-public interface DaoInterface<T> {
+public interface DaoInterface<T> { //we will change this to another Dao interface
     void store(T data);
 
-    int GetId(Client client);
+    int GetId(Client client); //change to get(int clientId)
 
     void delete(int id);
 
