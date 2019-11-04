@@ -16,15 +16,15 @@ public class Client {
 
 
 
-    public Client(String name, String surname, List<String> MyFlights) {
+    public Client(String name, String surname, List<String> MyFlights) { //don't need List in constructor (Aleksey)
         this.name = name;
         this.surname=surname;
         this.MyFlights=MyFlights;
-        this.UserId=CounterOfId++;
+        this.UserId=CounterOfId++; // how this will work? can u change this to random value (but it must be unique for each client)? (Aleksey) 
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) { //add comparing by HashCode (Aleksey)
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
