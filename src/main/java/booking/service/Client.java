@@ -44,12 +44,12 @@ public class Client {
                 '}';
     }
 
-    public void AddFlight(Flight flight)
+    public void AddFlight(Flight flight) // method's name starts from small letter. pls change to addFlight
     {
         MyFlights.add(flight); /** Todo **/
     }
 
-    public boolean CancelFlight(Flight flight)
+    public boolean CancelFlight(Flight flight) // cancelFlight
     {
         try {
             MyFlights.remove(flight);  /** TODO **/
