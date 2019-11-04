@@ -8,12 +8,11 @@ public class Client {
     private String name;
     private String surname;
     private static int CounterOfId=0;
+    private List<String> MyFlights;
 
     public List<String> getMyFlights() {
         return MyFlights;
     }
-
-    private List<String> MyFlights;
 
 
 
@@ -43,6 +42,21 @@ public class Client {
                 ", surname='" + surname + '\'' +
                 ", MyFlights=" + MyFlights +
                 '}';
+    }
+
+    public void AddFlight(Flight flight)
+    {
+        MyFlights.add(flight); /** Todo **/
+    }
+
+    public boolean CancelFlight(Flight flight)
+    {
+        try {
+            MyFlights.remove(flight);  /** TODO **/
+            return true;
+        }catch (IndexOutOfBoundsException e) {
+            return false;
+        }
     }
 
     public int getUserId() {
