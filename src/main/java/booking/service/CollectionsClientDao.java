@@ -5,10 +5,10 @@ import booking.DAO.DaoInterface;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class CollectionsClientDao implements DaoInterface<Client> {
+public class CollectionsClientDao implements DaoInterface<Client> { //will change to default DAO (Aleksey)
 
 
-    private List<Client> AllClients;
+    private List<Client> AllClients; // = new ArrayList(); (Aleksey)
 
     public List<Client> GetAllClients() {
         return AllClients;
