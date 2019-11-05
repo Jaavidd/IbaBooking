@@ -11,7 +11,7 @@ public class Service {
     private File file=new File("./clientsData.txt");
 
 
-    public boolean CancelBooking(Client client,int FlightId) {
+    public boolean cancelBooking(Client client,int FlightId) {
 
         try {
             client.getMyFlights().forEach(flight ->{ if(flight.getId()==FlightId); client.cancelFlight(flight);} );
@@ -21,7 +21,7 @@ public class Service {
         }
 
     }
-    public void AddToDataBase(Client client) throws IOException {
+    public void addToDataBase(Client client) throws IOException {
 //        FileWriter writer=new FileWriter(file);
 //        writer.write("\n");
 //        writer.write(client.toString());

@@ -10,17 +10,14 @@ public class Controller {
   public Service service = new Service();
 
 
-  public void AddToData(Client c) throws IOException {
+
+  public boolean cancelBooking(Client client, int FlightId) {
+    return service.cancelBooking(client, FlightId);
   }
 
 
-  public boolean CancelBooking(Client client, int FlightId) {
-    return service.CancelBooking(client, FlightId);
-  }
-
-
-  public void AddToDataBase(Client client) throws IOException {
-    service.AddToDataBase(client);
+  public void addToDataBase(Client client) throws IOException {
+    service.addToDataBase(client);
   }
 
   public void myFlights(String name, String surname) {
