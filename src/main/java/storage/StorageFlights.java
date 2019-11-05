@@ -4,11 +4,10 @@ import dao.Dao;
 import flights.Flight;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StorageFlights implements Dao<Flight> {
 
-    private List<Flight> flightList = new ArrayList<>();
+    private ArrayList<Flight> flightList = new ArrayList<>();
 
     @Override
     public Flight get(int id) {
@@ -21,7 +20,7 @@ public class StorageFlights implements Dao<Flight> {
     }
 
     @Override
-    public List<Flight> getAll() {
+    public ArrayList<Flight> getAll() {
         return flightList;
     }
 
