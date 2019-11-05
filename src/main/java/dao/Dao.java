@@ -1,12 +1,13 @@
 package dao;
 
-import java.util.List;
-import java.util.Optional;
+import flights.Flight;
+
+import java.util.ArrayList;
 
 public interface Dao<T> {
-    Optional<T> get(int id);
+    Flight get(int id);
 
-    List<T> getAll();
+    ArrayList<T> getAll();
 
     void save(T t);
 

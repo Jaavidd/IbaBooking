@@ -5,17 +5,19 @@ import flights.Flight;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class StorageFlights implements Dao<Flight> {
 
     private List<Flight> flightList = new ArrayList<>();
 
     @Override
-    public Optional<Flight> get(int id) {
-        if (get(id).isPresent()) {
-            return Optional.of(flightList.get(id));
-        } else return Optional.empty();
+    public Flight get(int id) {
+        try{
+        return flightList.get(id);
+        }
+        catch (IndexOutOfBoundsException ex){
+            throw ex;
+        }
     }
 
     @Override
