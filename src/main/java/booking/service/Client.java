@@ -2,13 +2,13 @@ package booking.service;
 
 import java.util.List;
 import java.util.Objects;
-
+import java.util.Random;
 public class Client {
     private int UserId;
     private String name;
     private String surname;
-    private static int CounterOfId=0;
     private List<String> MyFlights;
+    private Random rand=new Random();
 
     public List<String> getMyFlights() {
         return MyFlights;
@@ -16,23 +16,30 @@ public class Client {
 
 
 
-    public Client(String name, String surname, List<String> MyFlights) {
+    public Client(String name, String surname) {
         this.name = name;
         this.surname=surname;
-        this.MyFlights=MyFlights;
-        this.UserId=CounterOfId++;
+        this.UserId=rand.nextInt(1000);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass() || this.hashCode()!=o.hashCode()) return false;
         Client client = (Client) o;
         return UserId == client.UserId &&
                 Objects.equals(name, client.name) &&
                 Objects.equals(surname, client.surname) &&
-                Objects.equals(MyFlights, client.MyFlights);
+                Objects.equals(MyFlights, client.MyFlights) &&
+                Objects.equals(rand, client.rand);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(UserId, name, surname, MyFlights, rand);
+    }
+
+    @Override
 
 
     public String toString() {
@@ -40,16 +47,16 @@ public class Client {
                 "UserId=" + UserId +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", MyFlights=" + MyFlights +
+//                ", MyFlights=" + MyFlights +
                 '}';
     }
 
-    public void AddFlight(Flight flight)
+    public void addFlight(Flight flight)
     {
         MyFlights.add(flight); /** Todo **/
     }
 
-    public boolean CancelFlight(Flight flight)
+    public boolean cancelFlight(Flight flight)
     {
         try {
             MyFlights.remove(flight);  /** TODO **/

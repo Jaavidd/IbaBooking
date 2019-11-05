@@ -2,9 +2,13 @@ package booking.service;
 
 import booking.DAO.DaoInterface;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Service {
 
    public DaoInterface<Client> service= new CollectionsClientDao();
+
 
     public boolean CancelBooking(Client client,int FlightId) {
 //        for(Client client1: service.GetAllClients()){
@@ -21,5 +25,8 @@ public class Service {
             return false;
         }
 
+    }
+    public void AddToDataBase(Client client) throws IOException {
+        service.AddToDataBase(client);
     }
 }
