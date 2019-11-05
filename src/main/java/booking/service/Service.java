@@ -1,32 +1,41 @@
 package booking.service;
 
-import booking.DAO.DaoInterface;
+import booking.DAO.Dao;
 
-import java.io.FileWriter;
+import java.io.File;
 import java.io.IOException;
 
 public class Service {
 
-   public DaoInterface<Client> service= new CollectionsClientDao();
+    public Dao<Client> service= new ClientsStorage();
+    private File file=new File("./clientsData.txt");
 
 
     public boolean CancelBooking(Client client,int FlightId) {
-//        for(Client client1: service.GetAllClients()){
-//            if(client1.equals(client)){
-//                client1.getMyFlights().contains(Fligt.getId(FlightId))
-//            throw new IllegalArgumentException(" TODO");
-//            }
-//        }
+
         try {
-            service.GetAllClients().forEach(c -> {
-                if (c.equals(client)) c.getMyFlights().remove(3) ;});
-                return true;
+            client.getMyFlights().forEach(flight ->{ if(flight.getId()==FlightId); client.cancelFlight(flight);} );
+            return true;
         }catch (IndexOutOfBoundsException e) {
             return false;
         }
 
     }
     public void AddToDataBase(Client client) throws IOException {
-        service.AddToDataBase(client);
+//        FileWriter writer=new FileWriter(file);
+//        writer.write("\n");
+//        writer.write(client.toString());
+//        writer.close();
+    }
+
+    public void myFlights(String name,String surname){
+        for(Client client: service.getAll()) {
+            if (client.getName().equals(name) && client.getSurname().equals(surname)) {
+                System.out.print("Your flights: ");
+                System.out.print(client.getMyFlights());
+
+            }
+        }
+
     }
 }

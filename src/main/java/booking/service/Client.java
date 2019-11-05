@@ -1,16 +1,19 @@
 package booking.service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import flights.Flight;
+
+import java.util.*;
+
 public class Client {
     private int UserId;
+
+
     private String name;
     private String surname;
-    private List<String> MyFlights;
+    private List<Flight> MyFlights=new ArrayList<>();
     private Random rand=new Random();
 
-    public List<String> getMyFlights() {
+    public List<Flight> getMyFlights() {
         return MyFlights;
     }
 
@@ -30,8 +33,7 @@ public class Client {
         return UserId == client.UserId &&
                 Objects.equals(name, client.name) &&
                 Objects.equals(surname, client.surname) &&
-                Objects.equals(MyFlights, client.MyFlights) &&
-                Objects.equals(rand, client.rand);
+                Objects.equals(MyFlights, client.MyFlights);
     }
 
     @Override
@@ -47,9 +49,18 @@ public class Client {
                 "UserId=" + UserId +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-//                ", MyFlights=" + MyFlights +
+                ", MyFlights=" + MyFlights +
                 '}';
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
 
     public void addFlight(Flight flight)
     {
@@ -59,7 +70,7 @@ public class Client {
     public boolean cancelFlight(Flight flight)
     {
         try {
-            MyFlights.remove(flight);  /** TODO **/
+            MyFlights.remove(flight);
             return true;
         }catch (IndexOutOfBoundsException e) {
             return false;
