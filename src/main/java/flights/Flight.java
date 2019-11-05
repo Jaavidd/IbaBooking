@@ -9,8 +9,8 @@ public class Flight {
     private int numberOfSeats;
 
     //TODO change HashMap to ArrayList or create new class "SeatMap"(2d matrix, seat/ client)
-    private HashMap<Integer, Client> seats; //TODO max size,  different class. Key - seat number, value - client
-    int numberOfFreeSeats;
+    private HashMap<Integer, Client> seats; //TODO max size,  different class. Key - seat number or *clientId*, value - client
+    private int numberOfFreeSeats;
 
     private Date startingDate; //current time + 24h
     private Date destinationDate; // starting time + (flying time)
@@ -29,7 +29,7 @@ public class Flight {
         this.destinationDate = destinationDate;
         this.startingCity = startingCity;
         this.destinationCity = destinationPoint;
-        this.numberOfFreeSeats = numberOfSeats;
+        this.numberOfFreeSeats = numberOfFreeSeats;
     }
 
     @Override
@@ -38,6 +38,7 @@ public class Flight {
         sb.append("id=").append(id);
         sb.append(", numberOfSeats=").append(numberOfSeats);
         sb.append(", seats=").append(seats);
+//        sb.append(", numberOfFreeSeats=").append(numberOfFreeSeats);
         sb.append(", startingDate=").append(startingDate);
         sb.append(", destinationDate=").append(destinationDate);
         sb.append(", startingCity='").append(startingCity).append('\'');
