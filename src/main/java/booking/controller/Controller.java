@@ -10,7 +10,7 @@ public class Controller {
   public   Service service=new Service();
 
 
-  public void AddToData(Client c) throws IOException {
+  public void AddToData(Client c) throws IOException { // change to addToData
     service.AddToDataBase(c);
   }
 
