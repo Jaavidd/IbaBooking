@@ -1,5 +1,6 @@
 package flights;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -8,9 +9,9 @@ public class FlightBuilder {
     private int numberOfSeats;
     private HashMap<Integer, Client> seats;
 
-    private Date startingDate;
+    private Long startingDate;
 
-    private Date destinationDate;
+    private Long destinationDate;
 
     private String startingCity;
     private String destinationCity;
@@ -30,12 +31,12 @@ public class FlightBuilder {
         return this;
     }
 
-    public FlightBuilder withStartingDate(Date startingD) {
+    public FlightBuilder withStartingDate(long startingD) {
         startingDate = startingD;
         return this;
     }
 
-    public FlightBuilder withDestinationDate(Date destinationD) {
+    public FlightBuilder withDestinationDate(long destinationD) {
         destinationDate = destinationD;
         return this;
     }

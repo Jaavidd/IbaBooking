@@ -21,7 +21,7 @@ public class StorageFlights implements Dao<Flight> {
     @Override
     public List<Flight> getAll() {
         return flightList;
-}
+    }
 
     @Override
     public void save(Flight flight) {

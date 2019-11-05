@@ -12,15 +12,15 @@ public class Flight {
     private HashMap<Integer, Client> seats; //TODO max size,  different class. Key - seat number or *clientId*, value - client
     private int numberOfFreeSeats;
 
-    private Date startingDate; //current time + 24h
-    private Date destinationDate; // starting time + (flying time)
+    private Long startingDate; //current time + 24h
+    private Long destinationDate; // starting time + (flying time)
 
     private String startingCity; //TODO default Kiev, change String to enum City
     private String destinationCity; //TODO Random cities (create enum)
 
     public Flight(int id, int numberOfSeats,
                   HashMap<Integer, Client> seats,
-                  Date startingDate, Date destinationDate,
+                  Long startingDate, Long destinationDate,
                   String startingCity, String destinationPoint) {
         this.id = id;
         this.numberOfSeats = numberOfSeats;
@@ -59,11 +59,11 @@ public class Flight {
         return seats;
     }
 
-    public Date getStartingDate() {
+    public Long getStartingDate() {
         return startingDate;
     }
 
-    public Date getDestinationDate() {
+    public Long getDestinationDate() {
         return destinationDate;
     }
 
