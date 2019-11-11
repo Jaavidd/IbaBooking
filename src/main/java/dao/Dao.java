@@ -1,12 +1,10 @@
 package dao;
 
-import flights.Flight;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
 public interface Dao<T> {
-    Flight get(int id) throws IOException, ClassNotFoundException;
+    T get(int id) throws IOException, ClassNotFoundException;
 
     ArrayList<T> getAll() throws IOException, ClassNotFoundException;
 
