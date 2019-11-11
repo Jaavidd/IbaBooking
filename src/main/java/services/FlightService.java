@@ -1,33 +1,39 @@
 package services;
 
 import dao.Dao;
-import flights.Cities;
 import flights.Flight;
-import flights.FlightBuilder;
+import flights.FlightRandomGenerator;
+import storage.DataFlight;
 import storage.StorageFlights;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class FlightService {
 
-    private Dao<Flight> flightDao = new StorageFlights();
+    private Dao<Flight> flightDao = new DataFlight();
 
-    public ArrayList<Flight> getAllFlight() {
+    public FlightService() throws IOException {
+    }
+
+    public ArrayList<Flight> getAllFlight() throws IOException, ClassNotFoundException {
         return flightDao.getAll();
     }
 
-    public ArrayList<Flight> getAvailableFlight(String cities, int freeSeats, Date date) { //TODO Date to String
+    public ArrayList<Flight> getAvailableFlight(String cities, int freeSeats, Date date) throws IOException, ClassNotFoundException { //TODO Date to String
         ArrayList<Flight> availableFlight;
         availableFlight = flightDao.getAll().stream()
                 .filter(flight -> flight.getDestinationCity().equals(cities))
                 .filter(flight -> flight.getNumberOfFreeSeats() >= freeSeats)
-                .filter(flight -> flight.getDestinationDate() - date.getTime() <= 100000).sorted()
+                .filter(flight -> flight.getDestinationDate() - Calendar.getInstance()
+                        .getTimeInMillis() <= Calendar.HOUR * 12).sorted()
                 .collect(Collectors.toCollection(ArrayList::new));
         return availableFlight;
     }
 
-    public void addClient(int flightId, Client client) { //TODO replace to flight
+    public void addClient(int flightId, Client client) throws IOException, ClassNotFoundException { //TODO replace to flight
         if (flightDao.get(flightId).getNumberOfFreeSeats() > 0) {
             flightDao.get(flightId).getSeats().put(client.getUserId(), client); //
             flightDao.update(flightDao.get(flightId));
@@ -37,32 +43,21 @@ public class FlightService {
         }
     }
 
-    public void removeClient(int flightId, Client client) {
+    public void removeClient(int flightId, Client client) throws IOException, ClassNotFoundException {
         flightDao.get(flightId).getSeats().remove(client.getUserId(), client);//TODO fix HashMap to ArrayList fo correct work
         client.cancelFlight(flightDao.get(flightId));
     }
 
-    public Flight getInfoAboutFlight(int flightId) {
+    public Flight getInfoAboutFlight(int flightId) throws IOException, ClassNotFoundException {
         return flightDao.get(flightId);
     }
 
-    public HashMap<Integer, Client> getPassengers(int flightId) {
+    public HashMap<Integer, Client> getPassengers(int flightId) throws IOException, ClassNotFoundException {
         return flightDao.get(flightId).getSeats();
     }
 
-
-    public void createRandomFlight() {
-        Cities city = new Cities();
-        Date date = new Date();
-        FlightBuilder flightBuilder = new FlightBuilder();
-        flightBuilder.withId((int) (Math.random() * 1000000));
-        flightBuilder.withStartingCity("Kiev");
-        flightBuilder.withDestinationCity(city.getRandomCity());
-        flightBuilder.withStartingDate(date.getTime());
-        flightBuilder.withDestinationDate(date.getTime() + (long) (Math.random() * 10000) + 10000);
-        flightBuilder.withNumberOfSeats(160);
-        flightBuilder.withSeats(new HashMap<Integer, Client>());
-        Flight flight = flightBuilder.build();
-        flightDao.save(flight);
+    public void createRandomFlight() throws ParseException, IOException, ClassNotFoundException {
+        FlightRandomGenerator flightRandom = new FlightRandomGenerator();
+        flightDao.save(flightRandom.buildRandom());
     }
 }
