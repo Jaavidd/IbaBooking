@@ -1,31 +1,33 @@
 package booking.service;
 
 import booking.DAO.Dao;
+
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 public class ClientsStorage implements Dao<Client> {
 
-    private List<Client> allClients=new ArrayList<>();
+    private List<Client> AllClients=new ArrayList<>();
     private   FileWriter writer;
 
 
 
     public List<Client> getAll() {
-        return allClients;
+        return AllClients;
     }
 
 
 
     @Override
     public void save(Client data) {
-        allClients.add(data);
+        AllClients.add(data);
 
     }
     public Client get(int id) {
-        for(Client client: allClients){
+        for(Client client: AllClients){
             if(client.getUserId()==id)
                 return client;
         }
@@ -34,7 +36,7 @@ public class ClientsStorage implements Dao<Client> {
 
 
     public int clientId(Client client) {
-        for(Client client1: allClients){
+        for(Client client1: AllClients){
             if(client1.equals(client))
                 return client1.getUserId();
         }
@@ -46,12 +48,12 @@ public class ClientsStorage implements Dao<Client> {
 
     @Override
     public void update(Client data) {
-        allClients.set(allClients.indexOf(data), data);
+        AllClients.set(AllClients.indexOf(data), data);
     }
 
     public void deleteById(int id){
         try {
-            allClients.forEach(client -> {if (client.getUserId()==id)  allClients.remove(client);} );
+            AllClients.forEach(client -> {if (client.getUserId()==id)  AllClients.remove(client); } );
         }catch (IndexOutOfBoundsException e){
             System.out.println("There is no client with this id");
         }
@@ -60,7 +62,7 @@ public class ClientsStorage implements Dao<Client> {
     @Override
     public void deleteByObject(Client client) {
         try {
-            allClients.forEach(client1 -> {if(client1.equals(client)); allClients.remove(client); });
+            AllClients.forEach(client1 -> {if(client1.equals(client)); AllClients.remove(client); });
         }catch (IndexOutOfBoundsException e) {
             System.out.println("No client");
         }

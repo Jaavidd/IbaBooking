@@ -3,6 +3,7 @@ package booking.service;
 import booking.DAO.Dao;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Service {
@@ -22,10 +23,10 @@ public class Service {
 
     }
     public void addToDataBase(Client client) throws IOException {
-//        FileWriter writer=new FileWriter(file);
-//        writer.write("\n");
-//        writer.write(client.toString());
-//        writer.close();
+        FileWriter writer=new FileWriter(file);
+        writer.write("\n");
+        writer.write(client.toString());
+        writer.close();
     }
 
     public void myFlights(String name,String surname){

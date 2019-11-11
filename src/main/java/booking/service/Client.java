@@ -1,13 +1,16 @@
 package booking.service;
 
-import flights.Flight;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Random;
+
+//import java.util.*;
 
 public class Client {
     private int UserId;
-
-
     private String name;
     private String surname;
     private List<Flight> MyFlights=new ArrayList<>();
@@ -62,19 +65,20 @@ public class Client {
     }
 
 
-    public void addFlight(Flight flight)
-    {
-        MyFlights.add(flight); /** Todo **/
+    public void addFlight(Flight flight) {
+        MyFlights.add(flight);  /** Todo **/
+
     }
 
     public boolean cancelFlight(Flight flight)
     {
-        try {
-            MyFlights.remove(flight);
-            return true;
-        }catch (IndexOutOfBoundsException e) {
+        if(!MyFlights.contains(flight))
             return false;
-        }
+
+
+        MyFlights.remove(flight);
+        return true;
+
     }
 
     public int getUserId() {
