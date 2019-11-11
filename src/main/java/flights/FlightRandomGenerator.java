@@ -50,7 +50,7 @@ public class FlightRandomGenerator {
         return this;
     }
 
-    public FlightRandomGenerator withDestinationCity() {
+    private FlightRandomGenerator withDestinationCity() {
         Cities destinationPoint = new Cities();
         destinationCity = destinationPoint.getRandomCity();
         return this;
@@ -63,7 +63,7 @@ public class FlightRandomGenerator {
         withStartingDate();
         withDestinationDate();
         withStartingCity();
-        withDestinationDate();
+        withDestinationCity();
         return new Flight(id, numberOfSeats, seats, startingDate, destinationDate, startingCity, destinationCity);
     }
 }
