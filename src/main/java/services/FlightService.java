@@ -1,5 +1,6 @@
 package services;
 
+import converter.DateConverter;
 import dao.Dao;
 import flights.Flight;
 import flights.FlightRandomGenerator;
@@ -28,7 +29,7 @@ public class FlightService {
                 .filter(flight -> flight.getDestinationCity().equals(cities))
                 .filter(flight -> flight.getNumberOfFreeSeats() >= freeSeats)
                 .filter(flight -> flight.getDestinationDate() - Calendar.getInstance()
-                        .getTimeInMillis() <= Calendar.HOUR * 12).sorted()
+                        .getTimeInMillis() <= DateConverter.hour(24)).sorted()
                 .collect(Collectors.toCollection(ArrayList::new));
         return availableFlight;
     }

@@ -61,6 +61,5 @@ public class DataFlight implements Dao<Flight> {
         flightList.remove(flight);
         objectOutputStream.writeObject(flightList);
         objectOutputStream.close();
-
     }
 }

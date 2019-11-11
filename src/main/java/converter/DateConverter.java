@@ -23,5 +23,8 @@ public class DateConverter {
         }
     }
 
+    public static long hour(int hour){
+        return 1000 * 60 * 60 * hour;
+    }
 
 }
