@@ -1,65 +1,38 @@
 package storage;
 
-import dao.Dao;
+import controller.FlightsController;
 import flights.Flight;
 
 import java.io.*;
 import java.util.ArrayList;
 
-public class DataFlight implements Dao<Flight> {
+public class DataFlight {
 
-    private File base = new File("storage/base.bin");
 
-    private FileOutputStream fileOutputStream = new FileOutputStream(base);
-    private ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+    String path = "storage/base.bin";
+    private File base = new File(path);
 
-    FileInputStream fileInputStream= new FileInputStream(base);
-    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-    public DataFlight() throws IOException {
-
+    public DataFlight(String path, FlightsController controller) throws IOException, ClassNotFoundException {
+        try {
+            FileOutputStream fos = new FileOutputStream(path);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(controller.getAllFlight());
+            oos.close();
+            fos.close();
+            System.out.println("ok");
+        } catch (IOException ex) {
+            System.out.println("save ex");
+        }
     }
 
-    @Override
-    public Flight get(int id) throws IOException, ClassNotFoundException {
-        ArrayList<Flight> flightList = (ArrayList<Flight>) objectInputStream.readObject();
-        return flightList.get(id);
-    }
-
-    @Override
-    public ArrayList<Flight> getAll() throws IOException, ClassNotFoundException {
-        return (ArrayList<Flight>) objectInputStream.readObject();
-    }
-
-    @Override
-    public void save(Flight flight) throws IOException, ClassNotFoundException {
-        ArrayList<Flight> flightList = (ArrayList<Flight>) objectInputStream.readObject();
-        flightList.add(flight);
-        objectOutputStream.writeObject(flightList);
-        objectOutputStream.close();
-    }
-
-    @Override
-    public void update(Flight flight) throws IOException, ClassNotFoundException {
-        ArrayList<Flight> flightList = (ArrayList<Flight>) objectInputStream.readObject();
-        flightList.set(flightList.indexOf(flight), flight);
-        objectOutputStream.writeObject(flightList);
-        objectOutputStream.close();
-    }
-
-    @Override
-    public void deleteById(int id) throws IOException, ClassNotFoundException {
-        ArrayList<Flight> flightList = (ArrayList<Flight>) objectInputStream.readObject();
-        flightList.remove(id);
-        objectOutputStream.writeObject(flightList);
-        objectOutputStream.close();
-    }
-
-    @Override
-    public void deleteByObject(Flight flight) throws IOException, ClassNotFoundException {
-        ArrayList<Flight> flightList = (ArrayList<Flight>) objectInputStream.readObject();
-        flightList.remove(flight);
-        objectOutputStream.writeObject(flightList);
-        objectOutputStream.close();
+    public ArrayList<Flight> loadFlight(String path) throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(path);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        ArrayList<Flight> flights = new ArrayList<>();
+        flights = (ArrayList<Flight>) ois.readObject();
+        ois.close();
+        fis.close();
+        return flights;
     }
 }
