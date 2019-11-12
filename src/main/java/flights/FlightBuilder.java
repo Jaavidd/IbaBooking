@@ -1,5 +1,9 @@
 package flights;
 
+import converter.DateConverter;
+
+import java.text.ParseException;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,9 +13,10 @@ public class FlightBuilder {
     private int numberOfSeats;
     private HashMap<Integer, Client> seats;
 
-    private Long startingDate;
+    private String startingDate;
 
-    private Long destinationDate;
+    private String destinationDate;
+
 
     private String startingCity;
     private String destinationCity;
@@ -31,12 +36,14 @@ public class FlightBuilder {
         return this;
     }
 
-    public FlightBuilder withStartingDate(long startingD) {
+    public FlightBuilder withStartingDate(String startingD) {
+
         startingDate = startingD;
         return this;
     }
 
-    public FlightBuilder withDestinationDate(long destinationD) {
+    public FlightBuilder withDestinationDate(String destinationD) {
+
         destinationDate = destinationD;
         return this;
     }
@@ -51,7 +58,8 @@ public class FlightBuilder {
         return this;
     }
 
-    public Flight build() {
+    public Flight build() throws ParseException {
+
         return new Flight(id, numberOfSeats, seats, startingDate, destinationDate, startingCity, destinationCity);
     }
 }
