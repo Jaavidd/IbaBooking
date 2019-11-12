@@ -9,19 +9,17 @@ import java.util.HashMap;
 
 public class Flight implements Serializable {
 
-    private int id; //TODO change to string , ex -> HE110, JB201
+    private int id;
     private int numberOfSeats;
 
-    //TODO change HashMap to ArrayList or create new class "SeatMap"(2d matrix, seat/ client)
     private int numberOfFreeSeats;
-    private HashMap<Integer, Client> seats = new HashMap<Integer, Client>(numberOfSeats); //TODO max size,  different class. Key - seat number or *clientId*, value - client
+    private HashMap<Integer, Client> seats = new HashMap<Integer, Client>(numberOfSeats);
 
+    private long startingDate;
+    private long destinationDate;
 
-    private long startingDate; //current time + 24h
-    private long destinationDate; // starting time + (flying time)
-
-    private String startingCity; //TODO default Kiev, change String to enum City
-    private String destinationCity; //TODO Random cities (create enum)
+    private String startingCity;
+    private String destinationCity;
 
     public Flight(int id, int numberOfSeats,
                   HashMap<Integer, Client> seats,
@@ -32,23 +30,24 @@ public class Flight implements Serializable {
         this.seats = seats;
         this.startingDate = DateConverter.stringToMills(startingDate);
         this.destinationDate = DateConverter.stringToMills(destinationDate);
+
         this.startingCity = startingCity;
         this.destinationCity = destinationPoint;
         this.numberOfFreeSeats = numberOfFreeSeats;
     }
 
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Flight{");
-        sb.append("id=").append(id);
-        sb.append(", number of seats=").append(numberOfSeats);
-        sb.append(", seats=").append(seats);
-        sb.append(", numberOfFreeSeats=").append(numberOfFreeSeats);
-        sb.append(", startingDate = ").append(DateConverter.millsToString(startingDate)); //Done
-        sb.append(", destinationDate = ").append(DateConverter.millsToString(destinationDate)); //Done
-        sb.append(", startingCity='").append(startingCity).append('\'');
-        sb.append(", destinationCity='").append(destinationCity).append('\'');
+        sb.append("id: ").append(id);
+        sb.append(", number of seats: ").append(numberOfSeats);
+        sb.append(", number of free seats:").append(numberOfFreeSeats);
+        sb.append(", seats map: ").append(seats);
+        sb.append(", starting date: ").append(DateConverter.millsToString(startingDate)); //Done
+        sb.append(", destination date: ").append(DateConverter.millsToString(destinationDate)); //Done
+        sb.append(", startingCity: '").append(startingCity).append('\'');
+        sb.append(", destinationCity: '").append(destinationCity).append('\'');
+
         sb.append('}');
         return sb.toString();
     }

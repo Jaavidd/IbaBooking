@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class FlightsController {
 
-    FlightService flightService = new FlightService();
+    private FlightService flightService = new FlightService();
 
     public FlightsController() throws IOException {
     }
@@ -36,6 +36,7 @@ public class FlightsController {
     }
 
     public void createRandomFlight() throws ParseException, IOException, ClassNotFoundException {
+
         flightService.createRandomFlight();
     }
 
