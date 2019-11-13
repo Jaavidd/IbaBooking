@@ -36,6 +36,7 @@ public class FlightsController {
     }
 
     public void createRandomFlight() throws ParseException, IOException, ClassNotFoundException {
+
         flightService.createRandomFlight();
     }
 

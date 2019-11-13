@@ -15,4 +15,5 @@ public interface Dao<T> {
     void deleteById(int id) throws IOException, ClassNotFoundException;
 
     void deleteByObject(T t) throws IOException, ClassNotFoundException;
+
 }

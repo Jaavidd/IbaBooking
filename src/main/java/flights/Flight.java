@@ -30,11 +30,11 @@ public class Flight implements Serializable {
         this.seats = seats;
         this.startingDate = DateConverter.stringToMills(startingDate);
         this.destinationDate = DateConverter.stringToMills(destinationDate);
+
         this.startingCity = startingCity;
         this.destinationCity = destinationPoint;
         this.numberOfFreeSeats = numberOfFreeSeats;
     }
-
 
     @Override
     public String toString() {
@@ -47,6 +47,7 @@ public class Flight implements Serializable {
         sb.append(", destination date: ").append(DateConverter.millsToString(destinationDate)); //Done
         sb.append(", startingCity: '").append(startingCity).append('\'');
         sb.append(", destinationCity: '").append(destinationCity).append('\'');
+
         sb.append('}');
         return sb.toString();
     }
