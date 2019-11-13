@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class FlightService {
 
 
-    private Dao<Flight> flightDao = new DataFlight();
+    private Dao<Flight> flightDao = new StorageFlights();
 
     public FlightService() throws IOException {
     }
