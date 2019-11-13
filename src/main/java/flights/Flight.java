@@ -41,8 +41,8 @@ public class Flight implements Serializable {
         sb.append(", number of seats: ").append(numberOfSeats);
         sb.append(", number of available seats:").append(numberOfFreeSeats);
         sb.append(", starting date: ").append(DateConverter.millsToString(startingDate)); //Done
-        sb.append(", startingCity: '").append(startingCity).append('\'');
-        sb.append(", destinationCity: '").append(destinationCity).append('\'');
+        sb.append(", starting city: '").append(startingCity).append('\'');
+        sb.append(", destination city: '").append(destinationCity).append('\'');
         sb.append(", destination date: ").append(DateConverter.millsToString(destinationDate)); //Done
         sb.append('}');
         return sb.toString();

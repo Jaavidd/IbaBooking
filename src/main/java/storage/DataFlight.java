@@ -20,7 +20,7 @@ public class DataFlight {
             oos.writeObject(controller.getAllFlight());
             oos.close();
             fos.close();
-            System.out.println("ok");
+            System.out.println("Save done");
         } catch (IOException ex) {
             System.out.println("save ex");
         }

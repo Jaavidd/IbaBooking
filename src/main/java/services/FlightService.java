@@ -21,7 +21,7 @@ public class FlightService {
         return flightDao.getAll();
     }
 
-    public ArrayList<Flight> getAvailableFlight(String cities, int freeSeats, Date date) throws IOException, ClassNotFoundException { //TODO Date to String
+    public ArrayList<Flight> getAvailableFlight(String cities, int freeSeats, Date date) throws IOException, ClassNotFoundException {
         ArrayList<Flight> availableFlight;
         availableFlight = flightDao.getAll().stream()
                 .filter(flight -> flight.getDestinationCity().equals(cities))
@@ -32,18 +32,18 @@ public class FlightService {
         return availableFlight;
     }
 
-    public void addClient(int flightId, Client client) throws IOException, ClassNotFoundException { //TODO replace to flight
+    public void addClient(int flightId, Client client) throws IOException, ClassNotFoundException {
         if (flightDao.get(flightId).getNumberOfFreeSeats() > 0) {
             flightDao.get(flightId).getSeats().put(client.getUserId(), client); //
             flightDao.update(flightDao.get(flightId));
             client.addFlight(flightDao.get(flightId));
         } else {
-            System.out.println("error"); // TODO change
+            System.out.println("add client error"); //
         }
     }
 
     public void removeClient(int flightId, Client client) throws IOException, ClassNotFoundException {
-        flightDao.get(flightId).getSeats().remove(client.getUserId(), client);//TODO fix HashMap to ArrayList fo correct work
+        flightDao.get(flightId).getSeats().remove(client.getUserId(), client);
         client.cancelFlight(flightDao.get(flightId));
     }
 
