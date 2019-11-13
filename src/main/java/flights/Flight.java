@@ -26,10 +26,9 @@ public class Flight implements Serializable {
                   String startingCity, String destinationPoint) throws ParseException {
         this.id = id;
         this.numberOfSeats = numberOfSeats;
-        this.seats = seats;
+        this.seats = new HashMap<Integer, Client>();
         this.startingDate = DateConverter.stringToMills(startingDate);
         this.destinationDate = DateConverter.stringToMills(destinationDate);
-
         this.startingCity = startingCity;
         this.destinationCity = destinationPoint;
         this.numberOfFreeSeats = getNumberOfFreeSeats();
@@ -42,9 +41,9 @@ public class Flight implements Serializable {
         sb.append(", number of seats: ").append(numberOfSeats);
         sb.append(", number of available seats:").append(numberOfFreeSeats);
         sb.append(", starting date: ").append(DateConverter.millsToString(startingDate)); //Done
-        sb.append(", destination date: ").append(DateConverter.millsToString(destinationDate)); //Done
         sb.append(", startingCity: '").append(startingCity).append('\'');
         sb.append(", destinationCity: '").append(destinationCity).append('\'');
+        sb.append(", destination date: ").append(DateConverter.millsToString(destinationDate)); //Done
         sb.append('}');
         return sb.toString();
     }
