@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class FlightsController {
 
@@ -33,6 +34,10 @@ public class FlightsController {
 
     public Flight getInfoAboutFlight(int flightId) throws IOException, ClassNotFoundException {
         return flightService.getInfoAboutFlight(flightId);
+    }
+
+    public HashMap<Integer, Client> getPassengers(int flightId) throws IOException, ClassNotFoundException {
+        return flightService.getPassengers(flightId);
     }
 
     public void createRandomFlight() throws ParseException, IOException, ClassNotFoundException {
