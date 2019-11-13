@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class DataFlight {
 
 
-    String path = "storage/base.bin";
+    private String path = "storage/base.bin";
     private File base = new File(path);
 
 
@@ -29,8 +29,7 @@ public class DataFlight {
     public ArrayList<Flight> loadFlight(String path) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(path);
         ObjectInputStream ois = new ObjectInputStream(fis);
-        ArrayList<Flight> flights = new ArrayList<>();
-        flights = (ArrayList<Flight>) ois.readObject();
+        ArrayList<Flight> flights = (ArrayList<Flight>) ois.readObject();
         ois.close();
         fis.close();
         return flights;
