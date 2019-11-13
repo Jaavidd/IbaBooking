@@ -13,8 +13,6 @@ public class FlightsController {
 
     private FlightService flightService = new FlightService();
 
-    public FlightsController() throws IOException {
-    }
 
     public ArrayList<Flight> getAllFlight() throws IOException, ClassNotFoundException {
          return flightService.getAllFlight();
@@ -41,7 +39,6 @@ public class FlightsController {
     }
 
     public void createRandomFlight() throws ParseException, IOException, ClassNotFoundException {
-
         flightService.createRandomFlight();
     }
 
