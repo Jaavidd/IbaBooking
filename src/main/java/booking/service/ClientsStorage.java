@@ -1,19 +1,19 @@
 package booking.service;
 
-import booking.DAO.Dao;
+import dao.Dao;
+
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 public class ClientsStorage implements Dao<Client> {
 
-    private List<Client> allClients=new ArrayList<>();
-    private   FileWriter writer;
+    private ArrayList<Client> allClients=new ArrayList<>();
+    private FileWriter writer;
 
 
 
-    public List<Client> getAll() {
+    public ArrayList<Client> getAll() {
         return allClients;
     }
 

@@ -1,5 +1,6 @@
 package flights;
 
+import booking.service.Client;
 import converter.DateConverter;
 
 import java.text.ParseException;

@@ -1,4 +1,5 @@
 package services;
+import booking.service.Client;
 import converter.DateConverter;
 import dao.Dao;
 import flights.Flight;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 public class FlightService {
 
 
-    private Dao<Flight> flightDao = new DataFlight();
+    private Dao<Flight> flightDao = new StorageFlights();
 
     public FlightService() throws IOException {
     }
@@ -65,4 +66,9 @@ public class FlightService {
         flightDao.save(flightRandom.buildRandom());
 
     }
+
+    public void addFlight(Flight flight){
+        flightDao.save(flight);
+    }
+
 }

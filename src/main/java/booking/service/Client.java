@@ -2,9 +2,10 @@ package booking.service;
 
 import flights.Flight;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Client {
+public class Client implements Serializable {
     private int UserId;
 
 

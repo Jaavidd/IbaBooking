@@ -1,6 +1,6 @@
 package booking.service;
 
-import booking.DAO.Dao;
+import dao.Dao;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class Service {
 //        writer.close();
     }
 
-    public void myFlights(String name,String surname){
+    public void myFlights(String name,String surname) throws IOException, ClassNotFoundException {
         for(Client client: service.getAll()) {
             if (client.getName().equals(name) && client.getSurname().equals(surname)) {
                 System.out.print("Your flights: ");

@@ -1,5 +1,6 @@
 package controller;
 
+import booking.service.Client;
 import flights.Flight;
 import services.FlightService;
 
@@ -40,4 +41,7 @@ public class FlightsController {
         flightService.createRandomFlight();
     }
 
+    public void addFlight(Flight flight1) {
+        flightService.addFlight(flight1);
+    }
 }
