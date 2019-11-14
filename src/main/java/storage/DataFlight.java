@@ -15,7 +15,7 @@ public class DataFlight {
 
     public DataFlight(FlightsController controller) throws IOException, ClassNotFoundException {
         try {
-            FileOutputStream fos = new FileOutputStream(base,true);
+            FileOutputStream fos = new FileOutputStream(base);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(controller.getAllFlight());
             oos.close();

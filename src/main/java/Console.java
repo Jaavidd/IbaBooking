@@ -13,13 +13,15 @@ public class Console {
     private FlightsController fc = new FlightsController();
     private Scanner scan = new Scanner(System.in);
 
+    DataFlight df;
 
     public Console() throws ParseException, IOException, ClassNotFoundException {
-        Random random = new Random();
-        for (int x = 0; x < random.nextInt(20) + 20; x++)
-            fc.createRandomFlight();
-        DataFlight df = new DataFlight(fc);
-        df.loadFlight();
+        if (fc.getAllFlight().size() == 0) { // trying to check db
+            Random random = new Random();
+            for (int x = 0; x < random.nextInt(20) + 20; x++)
+                fc.createRandomFlight();
+            df = new DataFlight(fc);}
+
     }
 
     public void printer(String message) {
@@ -133,8 +135,10 @@ public class Console {
             cancelBooking();
         else if (command.equals("myflights") || command.equals("5"))
             myFlight();
-        else if (command.equals("exit") || command.equals("6"))
+        else if (command.equals("exit") || command.equals("6")){
+            df = new DataFlight(fc); // saving before exit
             System.exit(0);
+        }
     }
 
 
