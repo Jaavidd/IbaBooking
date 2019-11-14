@@ -12,20 +12,21 @@ public class Console {
 
     private FlightsController fc = new FlightsController();
     private Scanner scan = new Scanner(System.in);
-    private DataFlight df;
+    private DataFlight df = new DataFlight();
+    private ArrayList<Flight> flights;
 
     public Console() throws ParseException, IOException, ClassNotFoundException {
-        if (df.loadFlight().isEmpty()) {
-            Random random = new Random();
+        Random random = new Random();
+        if (df.loadFlight() == null) {
             for (int x = 0; x < random.nextInt(20) + 20; x++)
                 fc.createRandomFlight();
             df = new DataFlight(fc);
         } else {
-            ArrayList<Flight> flights = df.loadFlight();
+            flights = df.loadFlight();
             for (Flight flight : flights) {
                 fc.addFlight(flight);
-                df = new DataFlight(fc);
             }
+            df = new DataFlight(fc);
         }
     }
 

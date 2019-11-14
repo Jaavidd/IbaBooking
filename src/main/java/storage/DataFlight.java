@@ -10,10 +10,10 @@ public class DataFlight {
 
     private String path = "base.bin";
 
-    private File base = new File(path);
 
 
     public DataFlight(FlightsController controller) throws IOException, ClassNotFoundException {
+        File base = new File(path);
         try {
             FileOutputStream fos = new FileOutputStream(base);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -26,7 +26,11 @@ public class DataFlight {
         }
     }
 
+    public DataFlight() {
+    }
+
     public ArrayList<Flight> loadFlight() throws IOException, ClassNotFoundException {
+        File base = new File(path);
         FileInputStream fis = new FileInputStream(base);
         ObjectInputStream ois = new ObjectInputStream(fis);
         ArrayList<Flight> flights = (ArrayList<Flight>) ois.readObject();

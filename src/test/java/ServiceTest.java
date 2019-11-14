@@ -22,7 +22,7 @@ class ServiceTest {
         Map<Integer, Client> map=new HashMap<>();
         map.put(10,client);
         String start= "10:30 21/12/2019";
-        String end= "13:30 21/12/2019";
+        String end = "10:30 21/12/2019";
 
         Flight flight = new Flight(2, 100, start, end, "London", "New-York");
 
