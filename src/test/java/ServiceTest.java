@@ -3,6 +3,8 @@ import booking.service.Service;
 import flights.Flight;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,14 +17,14 @@ class ServiceTest {
 
 
     @Test
-    void cancelBooking() {
+    void cancelBooking() throws ParseException {
         Client client = new Client("Javid", "Mammadli");
         Map<Integer, Client> map=new HashMap<>();
         map.put(10,client);
-        Long start=new Long(21);
-        Long end=new Long(22);
+        String start= "10:30 21/12/2019";
+        String end = "10:30 21/12/2019";
 
-        Flight flight = new Flight(2, 100, (HashMap<Integer, Client>) map, start, end, "London", "New-York");
+        Flight flight = new Flight(2, 100, start, end, "London", "New-York");
 
         assertEquals(false,service.cancelBooking(client,2));
 
@@ -43,7 +45,7 @@ class ServiceTest {
     }
 
     @Test
-    void get() {
+    void get() throws IOException, ClassNotFoundException {
         Client client=new Client("Petr","Mitrich");
         assertNull(service.service.get(2));
     }
