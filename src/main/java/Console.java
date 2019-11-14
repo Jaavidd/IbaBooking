@@ -12,14 +12,15 @@ public class Console {
 
     private FlightsController fc = new FlightsController();
     private Scanner scan = new Scanner(System.in);
-
+    private DataFlight df;
+    private ArrayList<Flight> flights;
 
     public Console() throws ParseException, IOException, ClassNotFoundException {
         Random random = new Random();
         for (int x = 0; x < random.nextInt(20) + 20; x++)
             fc.createRandomFlight();
-        DataFlight df = new DataFlight(fc);
-        df.loadFlight();
+        df = new DataFlight(fc);
+        flights = df.loadFlight();
     }
 
     public void printer(String message) {
@@ -27,25 +28,28 @@ public class Console {
     }
 
     public void searchAndBook() throws IOException, ClassNotFoundException, ParseException {
+        String city, data;
+        long date;
+        int people, userSelection;
+
         printer("Please enter destination city : ");
-        String city = scan.next();
+        city = scan.next();
         printer("Please enter date : ");
-        String data = "";
+        data = "";
         data += scan.nextLine();
         data += scan.nextLine();
-        long date = converter.DateConverter.stringToMills(data);
+        date = converter.DateConverter.stringToMills(data);
         printer("Please how many people will travel : ");
-        int people = scan.nextInt();
+        people = scan.nextInt();
         ArrayList<Flight> cFlight = fc.getAvailableFlight(city, people, new Date(date));
         System.out.println("\nMost similar results :");
         printer(cFlight.toString() + "\n");
         printer("Select any available flights above : ");
-        int selection = scan.nextInt();
-
-        if (!cFlight.contains(selection) || selection < 0) {
+        userSelection = scan.nextInt();
+        if (!cFlight.contains(userSelection) || userSelection < 0) {
             System.out.println("Wrong Selection");
             return;
-        } else if (selection == 0)
+        } else if (userSelection == 0)
             return;
         else {
             for (int a = 0; a < people; a++) {
@@ -53,7 +57,7 @@ public class Console {
                 String name = scan.next();
                 printer("Enter surname of passenger : \n");
                 String surname = scan.next();
-                fc.addClient(selection, new Client(name, surname));
+                fc.addClient(userSelection, new Client(name, surname));
             }
         }
     }
@@ -73,22 +77,29 @@ public class Console {
 
         printer("Please enter booking id :");
         int id = scan.nextInt();
+        int counter = 1;
 
         for (Flight item : fc.getAllFlight()) {
             for (HashMap.Entry<Integer, Client> entry : item.getSeats().entrySet()) {
                 if (entry.getValue().getUserId() == id) {
                     printer("\nAll available flights :\n");
-                    int counter = 1;
                     for (Flight flight : entry.getValue().getMyFlights())
                         printer(counter + ") " + flight.toString() + "\n");
 
                     printer("Please enter flight number :");
-                    int flightNumber = scan.nextInt();
+                    int newID = scan.nextInt();
+                    boolean succes=false;
+
                     for (Flight flight : entry.getValue().getMyFlights()) {
-                        if (counter == 0)
+                        if (flight.getId() == newID) {
+                            printer("\nOperation succesfull flight canceled\n");
                             entry.getValue().cancelFlight(flight);
-                        counter--;
+                            succes=true;
+                        }
                     }
+
+                    if(!succes)
+                        printer("\nFlight cancellation is unsuccessful you do not have this flight ");
                 }
             }
         }
@@ -108,7 +119,6 @@ public class Console {
             }
         }
     }
-
 
     public void mainMenu() throws IOException, ClassNotFoundException, ParseException {
 
@@ -133,8 +143,9 @@ public class Console {
             cancelBooking();
         else if (command.equals("myflights") || command.equals("5"))
             myFlight();
-        else if (command.equals("exit") || command.equals("6"))
+        else if (command.equals("exit") || command.equals("6")) {
             System.exit(0);
+        }
     }
 
 
