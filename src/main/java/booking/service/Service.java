@@ -1,6 +1,6 @@
 package booking.service;
 
-import booking.DAO.Dao;
+import dao.Dao;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,14 +13,12 @@ public class Service {
 
 
     public boolean cancelBooking(Client client,int FlightId) {
-
         try {
             client.getMyFlights().forEach(flight ->{ if(flight.getId()==FlightId); client.cancelFlight(flight);} );
             return true;
         }catch (IndexOutOfBoundsException e) {
             return false;
         }
-
     }
     public void addToDataBase(Client client) throws IOException {
         FileWriter writer=new FileWriter(file);
@@ -29,14 +27,12 @@ public class Service {
         writer.close();
     }
 
-    public void myFlights(String name,String surname){
+    public void myFlights(String name,String surname) throws IOException, ClassNotFoundException {
         for(Client client: service.getAll()) {
             if (client.getName().equals(name) && client.getSurname().equals(surname)) {
                 System.out.print("Your flights: ");
                 System.out.print(client.getMyFlights());
-
             }
         }
-
     }
 }

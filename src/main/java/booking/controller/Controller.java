@@ -20,7 +20,7 @@ public class Controller {
     service.addToDataBase(client);
   }
 
-  public void myFlights(String name, String surname) {
+  public void myFlights(String name, String surname) throws IOException, ClassNotFoundException {
     service.myFlights(name,surname);
   }
 }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/IbaBooking.iml" filepath="$PROJECT_DIR$/.idea/IbaBooking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IbaBooking.iml" filepath="$PROJECT_DIR$/IbaBooking.iml" />
     </modules>
   </component>
 </project>

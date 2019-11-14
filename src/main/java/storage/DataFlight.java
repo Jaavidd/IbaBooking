@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 public class DataFlight {
 
-    private String path = "storage/base.bin";
+    private String path = "base.bin";
 
     private File base = new File(path);
 
 
-    public DataFlight(String path, FlightsController controller) throws IOException, ClassNotFoundException {
+    public DataFlight(FlightsController controller) throws IOException, ClassNotFoundException {
         try {
-            FileOutputStream fos = new FileOutputStream(path);
+            FileOutputStream fos = new FileOutputStream(base,true);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(controller.getAllFlight());
             oos.close();
@@ -26,8 +26,8 @@ public class DataFlight {
         }
     }
 
-    public ArrayList<Flight> loadFlight(String path) throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream(path);
+    public ArrayList<Flight> loadFlight() throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(base);
         ObjectInputStream ois = new ObjectInputStream(fis);
         ArrayList<Flight> flights = (ArrayList<Flight>) ois.readObject();
         ois.close();

@@ -1,27 +1,25 @@
+
 import booking.service.Client;
 import controller.FlightsController;
 import flights.Flight;
-import flights.FlightRandomGenerator;
+import storage.DataFlight;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Console {
 
     private FlightsController fc = new FlightsController();
     private Scanner scan = new Scanner(System.in);
 
-    private ArrayList<Flight> flights = new ArrayList<>();
 
     public Console() throws ParseException, IOException, ClassNotFoundException {
         Random random = new Random();
         for (int x = 0; x < random.nextInt(20) + 20; x++)
             fc.createRandomFlight();
-        flights = fc.getAllFlight();
-
+        DataFlight df = new DataFlight(fc);
+        df.loadFlight();
     }
 
     public void printer(String message) {
@@ -66,26 +64,26 @@ public class Console {
         printer(fc.getInfoAboutFlight(query).toString());
     }
 
-    public void showFlights() {
-        printer("All available flights and their info : ");
-        flights.forEach(item -> System.out.println(item.toString()));
+    public void showFlights() throws IOException, ClassNotFoundException {
+        printer("All available flights and their info :\n ");
+        fc.getAllFlight().forEach(item -> System.out.println(item.toString()));
     }
 
-    public void cancelBooking() {
+    public void cancelBooking() throws IOException, ClassNotFoundException {
 
         printer("Please enter booking id :");
         int id = scan.nextInt();
 
-        for (Flight item : flights) {
+        for (Flight item : fc.getAllFlight()) {
             for (HashMap.Entry<Integer, Client> entry : item.getSeats().entrySet()) {
                 if (entry.getValue().getUserId() == id) {
-                    printer("\nAll available flights :");
+                    printer("\nAll available flights :\n");
                     int counter = 1;
                     for (Flight flight : entry.getValue().getMyFlights())
                         printer(counter + ") " + flight.toString() + "\n");
 
                     printer("Please enter flight number :");
-                    int flighNumber = scan.nextInt();
+                    int flightNumber = scan.nextInt();
                     for (Flight flight : entry.getValue().getMyFlights()) {
                         if (counter == 0)
                             entry.getValue().cancelFlight(flight);

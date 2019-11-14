@@ -1,5 +1,6 @@
 package controller;
 
+import booking.service.Client;
 import flights.Flight;
 import services.FlightService;
 
