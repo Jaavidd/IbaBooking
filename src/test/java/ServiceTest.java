@@ -17,23 +17,6 @@ class ServiceTest {
 
 
     @Test
-    void cancelBooking() throws ParseException {
-        Client client = new Client("Javid", "Mammadli");
-        Map<Integer, Client> map=new HashMap<>();
-        map.put(10,client);
-        String start= "10:30 21/12/2019";
-        String end = "10:30 21/12/2019";
-
-        Flight flight = new Flight(2, 100, start, end, "London", "New-York");
-
-        assertEquals(false,service.cancelBooking(client,2));
-
-        client.addFlight(flight);
-        assertEquals(true,service.cancelBooking(client,2));
-
-    }
-
-    @Test
     void equals() {
         Client client1=new Client("Dexter","Johnson");
         Client client2=new Client("Sasha","Petrov");
