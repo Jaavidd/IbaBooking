@@ -13,7 +13,9 @@ public class Flight implements Serializable {
     private int numberOfSeats;
 
     private int numberOfFreeSeats;
-    private HashMap<Integer, Client> seats = new HashMap<Integer, Client>(numberOfSeats);
+
+    private HashMap<Integer, Client> seats;
+
 
     private long startingDate;
     private long destinationDate;
@@ -22,18 +24,16 @@ public class Flight implements Serializable {
     private String destinationCity;
 
     public Flight(int id, int numberOfSeats,
-                  HashMap<Integer, Client> seats,
                   String startingDate, String destinationDate,
                   String startingCity, String destinationPoint) throws ParseException {
         this.id = id;
         this.numberOfSeats = numberOfSeats;
-        this.seats = seats;
+        this.seats = new HashMap<Integer, Client>();
         this.startingDate = DateConverter.stringToMills(startingDate);
         this.destinationDate = DateConverter.stringToMills(destinationDate);
-
         this.startingCity = startingCity;
         this.destinationCity = destinationPoint;
-        this.numberOfFreeSeats = numberOfFreeSeats;
+        this.numberOfFreeSeats = getNumberOfFreeSeats();
     }
 
     @Override
@@ -41,13 +41,11 @@ public class Flight implements Serializable {
         final StringBuilder sb = new StringBuilder("Flight{");
         sb.append("id: ").append(id);
         sb.append(", number of seats: ").append(numberOfSeats);
-        sb.append(", number of free seats:").append(numberOfFreeSeats);
-        sb.append(", seats map: ").append(seats);
-        sb.append(", starting date: ").append(DateConverter.millsToString(startingDate)); //Done
-        sb.append(", destination date: ").append(DateConverter.millsToString(destinationDate)); //Done
-        sb.append(", startingCity: '").append(startingCity).append('\'');
-        sb.append(", destinationCity: '").append(destinationCity).append('\'');
-
+        sb.append(", number of available seats:").append(numberOfFreeSeats);
+        sb.append(", starting date: ").append(DateConverter.millsToString(startingDate));
+        sb.append(", starting city: '").append(startingCity).append('\'');
+        sb.append(", destination city: '").append(destinationCity).append('\'');
+        sb.append(", destination date: ").append(DateConverter.millsToString(destinationDate)); 
         sb.append('}');
         return sb.toString();
     }

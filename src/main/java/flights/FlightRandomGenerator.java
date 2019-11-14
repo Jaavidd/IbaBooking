@@ -64,6 +64,6 @@ public class FlightRandomGenerator {
         withDestinationDate();
         withStartingCity();
         withDestinationCity();
-        return new Flight(id, numberOfSeats, seats, startingDate, destinationDate, startingCity, destinationCity);
+        return new Flight(id, numberOfSeats, startingDate, destinationDate, startingCity, destinationCity);
     }
 }

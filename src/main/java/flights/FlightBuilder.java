@@ -59,7 +59,6 @@ public class FlightBuilder {
     }
 
     public Flight build() throws ParseException {
-
-        return new Flight(id, numberOfSeats, seats, startingDate, destinationDate, startingCity, destinationCity);
+        return new Flight(id, numberOfSeats, startingDate, destinationDate, startingCity, destinationCity);
     }
 }
