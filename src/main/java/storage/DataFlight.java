@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class DataFlight {
 
-
     private String path = "storage/base.bin";
+
     private File base = new File(path);
 
 

@@ -13,7 +13,6 @@ public class FlightsController {
 
     private FlightService flightService = new FlightService();
 
-
     public ArrayList<Flight> getAllFlight() throws IOException, ClassNotFoundException {
          return flightService.getAllFlight();
     }
@@ -33,7 +32,7 @@ public class FlightsController {
     public Flight getInfoAboutFlight(int flightId) throws IOException, ClassNotFoundException {
         return flightService.getInfoAboutFlight(flightId);
     }
-
+  
     public HashMap<Integer, Client> getPassengers(int flightId) throws IOException, ClassNotFoundException {
         return flightService.getPassengers(flightId);
     }

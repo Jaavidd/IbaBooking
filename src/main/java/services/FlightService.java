@@ -1,5 +1,4 @@
 package services;
-
 import converter.DateConverter;
 import dao.Dao;
 import flights.Flight;
@@ -14,8 +13,7 @@ import java.util.stream.Collectors;
 
 public class FlightService {
 
-    private Dao<Flight> flightDao = new StorageFlights();
-
+    private Dao<Flight> flightDao = new StorageFlights();;
 
     public ArrayList<Flight> getAllFlight() throws IOException, ClassNotFoundException {
         return flightDao.getAll();
@@ -27,7 +25,7 @@ public class FlightService {
                 .filter(flight -> flight.getDestinationCity().equals(cities))
                 .filter(flight -> flight.getNumberOfFreeSeats() >= freeSeats)
                 .filter(flight -> flight.getDestinationDate() - Calendar.getInstance()
-                        .getTimeInMillis() <= DateConverter.hour(24)).sorted()
+                .getTimeInMillis() <= DateConverter.hour(24)).sorted()
                 .collect(Collectors.toCollection(ArrayList::new));
         return availableFlight;
     }
