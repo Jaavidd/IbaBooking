@@ -52,6 +52,10 @@ public class FlightService {
         return flightDao.get(flightId).getSeats();
     }
 
+    public void addFlight(Flight flight) throws IOException, ClassNotFoundException {
+        flightDao.save(flight);
+    }
+
     public void createRandomFlight() throws ParseException, IOException, ClassNotFoundException {
         FlightRandomGenerator flightRandom = new FlightRandomGenerator();
         flightDao.save(flightRandom.buildRandom());

@@ -37,6 +37,9 @@ public class FlightsController {
     public HashMap<Integer, Client> getPassengers(int flightId) throws IOException, ClassNotFoundException {
         return flightService.getPassengers(flightId);
     }
+    public void addFlight(Flight flight) throws IOException, ClassNotFoundException {
+        flightService.addFlight(flight);
+    }
 
     public void createRandomFlight() throws ParseException, IOException, ClassNotFoundException {
         flightService.createRandomFlight();

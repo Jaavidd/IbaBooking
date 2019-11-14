@@ -13,14 +13,20 @@ public class Console {
     private FlightsController fc = new FlightsController();
     private Scanner scan = new Scanner(System.in);
     private DataFlight df;
-    private ArrayList<Flight> flights;
 
     public Console() throws ParseException, IOException, ClassNotFoundException {
-        Random random = new Random();
-        for (int x = 0; x < random.nextInt(20) + 20; x++)
-            fc.createRandomFlight();
-        df = new DataFlight(fc);
-        flights = df.loadFlight();
+        if (df.loadFlight().isEmpty()) {
+            Random random = new Random();
+            for (int x = 0; x < random.nextInt(20) + 20; x++)
+                fc.createRandomFlight();
+            df = new DataFlight(fc);
+        } else {
+            ArrayList<Flight> flights = df.loadFlight();
+            for (Flight flight : flights) {
+                fc.addFlight(flight);
+                df = new DataFlight(fc);
+            }
+        }
     }
 
     public void printer(String message) {
@@ -88,17 +94,17 @@ public class Console {
 
                     printer("Please enter flight number :");
                     int newID = scan.nextInt();
-                    boolean succes=false;
+                    boolean succes = false;
 
                     for (Flight flight : entry.getValue().getMyFlights()) {
                         if (flight.getId() == newID) {
-                            printer("\nOperation succesfull flight canceled\n");
+                            printer("\nOperation successful flight canceled\n");
                             entry.getValue().cancelFlight(flight);
-                            succes=true;
+                            succes = true;
                         }
                     }
 
-                    if(!succes)
+                    if (!succes)
                         printer("\nFlight cancellation is unsuccessful you do not have this flight ");
                 }
             }
@@ -144,6 +150,7 @@ public class Console {
         else if (command.equals("myflights") || command.equals("5"))
             myFlight();
         else if (command.equals("exit") || command.equals("6")) {
+            df = new DataFlight(fc);
             System.exit(0);
         }
     }
