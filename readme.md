@@ -39,12 +39,11 @@ The main menu which the user sees upon opening the app should have the following
  
 #### The task for student №1
  - Create a class to work with the console
+ - Create a controller, a service and DAO for the bookings
 
 #### The task for student №2
  - Create a controller, a service and DAO for the flights
  
-#### The task for student №3
- - Create a controller, a service and DAO for the bookings
 
 #### Organization of the workflow:
  - The code of the team members must be in the same repository.
